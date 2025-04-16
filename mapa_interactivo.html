@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Mapa interactivo con Leaflet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cargar el CSS de Leaflet desde archivo local -->
+  <link rel="stylesheet" href="leaflet.css" />
+
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Cargar el JS de Leaflet desde archivo local -->
+  <script src="leaflet.js"></script>
+
+  <script>
+    // Crear mapa centrado en Madrid
+    var map = L.map('map').setView([40.4168, -3.7038], 13);
+map.invalidateSize();
+   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+    // Añadir un marcador
+    var marker = L.marker(map.getCenter()).addTo(map);
+
+    // Mostrar coordenadas al hacer clic
+    map.on('click', function(e) {
+      alert("Lat: " + e.latlng.lat.toFixed(5) + ", Lng: " + e.latlng.lng.toFixed(5));
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
